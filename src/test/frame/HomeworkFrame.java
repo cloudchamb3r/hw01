@@ -1,6 +1,5 @@
 package test.frame;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
@@ -8,20 +7,13 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.io.IOException;
-import java.lang.reflect.Array;
-
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -73,23 +65,6 @@ public class HomeworkFrame extends JFrame {
 
         initTable();
         loadMemberList();
-        JFileChooser chooser = new JFileChooser();
-        {
-            chooser.setFileFilter(new FileFilter() {
-                @Override
-                public String getDescription() {
-                    return "dat files (*.dat)";
-                }
-
-                @Override
-                public boolean accept(java.io.File f) {
-                    if (f.isDirectory())
-                        return true;
-                    return f.getName().endsWith(".dat");
-                }
-            });
-        }
-
         JPanel panel = new JPanel();
         {
             JTextField numField = new JTextField(5);
