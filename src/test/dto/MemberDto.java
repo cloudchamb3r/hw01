@@ -10,6 +10,8 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import test.safecast.ListCast;
+
 public class MemberDto implements Serializable {
     int num;
     String name;
@@ -56,11 +58,10 @@ public class MemberDto implements Serializable {
         return vec;
     }
 
-    @SuppressWarnings("unchecked")
     public static List<MemberDto> loadMemberDtoList(String path) {
         try (var fis = new FileInputStream(path)) {
             try (var ois = new java.io.ObjectInputStream(fis)) {
-                return (List<MemberDto>) ois.readObject();
+                return ListCast.cast(ois.readObject(), MemberDto.class);
             }
         } catch (IOException ioe) {
             if (ioe instanceof FileNotFoundException) {
