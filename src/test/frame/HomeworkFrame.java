@@ -37,7 +37,7 @@ public class HomeworkFrame extends JFrame {
     }
 
     void loadMemberList() {
-        memberList = MemberDto.loadDtos(defaultPath);
+        memberList = MemberDto.loadMemberDtoList(defaultPath);
 
         model.setRowCount(0);
         memberList.stream().forEach(dto -> model.addRow(dto.toRowVec()));
@@ -54,7 +54,7 @@ public class HomeworkFrame extends JFrame {
     }
 
     void saveMemberList() {
-        MemberDto.saveDtos(memberList, defaultPath);
+        MemberDto.saveMemberDtoList(memberList, defaultPath);
         loadMemberList();
     }
 

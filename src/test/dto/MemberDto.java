@@ -56,7 +56,8 @@ public class MemberDto implements Serializable {
         return vec;
     }
 
-    public static List<MemberDto> loadDtos(String path) {
+    @SuppressWarnings("unchecked")
+    public static List<MemberDto> loadMemberDtoList(String path) {
         try (var fis = new FileInputStream(path)) {
             try (var ois = new java.io.ObjectInputStream(fis)) {
                 return (List<MemberDto>) ois.readObject();
@@ -64,8 +65,8 @@ public class MemberDto implements Serializable {
         } catch (IOException ioe) {
             if (ioe instanceof FileNotFoundException) {
                 var memberList = new ArrayList<MemberDto>();
-                saveDtos(memberList, path);
-                return loadDtos(path);
+                saveMemberDtoList(memberList, path);
+                return loadMemberDtoList(path);
             }
             JOptionPane.showMessageDialog(null, ioe.getMessage());
         } catch (ClassNotFoundException cnfe) {
@@ -74,7 +75,7 @@ public class MemberDto implements Serializable {
         return null;
     }
 
-    public static void saveDtos(List<MemberDto> members, String path) {
+    public static void saveMemberDtoList(List<MemberDto> members, String path) {
         try (var fos = new java.io.FileOutputStream(path)) {
             try (var oos = new java.io.ObjectOutputStream(fos)) {
                 oos.writeObject(members);

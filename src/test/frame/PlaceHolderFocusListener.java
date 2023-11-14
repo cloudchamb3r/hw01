@@ -24,5 +24,4 @@ public class PlaceHolderFocusListener implements FocusListener {
             textField.setText(palceholder);
         }
     }
-
 }
